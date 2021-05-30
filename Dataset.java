@@ -1,6 +1,6 @@
 package graphs;
 
-public class Tiatainc {
+public class Dataset {
 
 	
 	private String pclass;
@@ -22,7 +22,6 @@ public class Tiatainc {
 	private String home_dist;
 	
 	private String boat;
-	//public Object getSurvived;
 	public String getPclass() {
 		return pclass;
 	}
