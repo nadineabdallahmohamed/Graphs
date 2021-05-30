@@ -20,14 +20,14 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class DAO {
-public List<Tiatainc> getPassengersFromJsonFile() {
-	        List<Tiatainc> allPassengers = new ArrayList<Tiatainc> ();
+public class DClass {
+public List<Dataset> getPassengersFromJsonFile() {
+	        List<Dataset> allPassengers = new ArrayList<Dataset> ();
 	        ObjectMapper objectMapper = new ObjectMapper ();
 	        objectMapper.configure (DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 	        try (InputStream input = new FileInputStream ("E:\\titanic_csv.json")) {
-	            //Read JSON file
-	            allPassengers = objectMapper.readValue (input, new TypeReference<List<Tiatainc>> () {
+	            //Read
+	            allPassengers = objectMapper.readValue (input, new TypeReference<List<Dataset>> () {
 	            });
 	        } catch (FileNotFoundException e) {
 	            e.printStackTrace ();
@@ -41,10 +41,10 @@ return allPassengers;
 
 
 
-public void graphPassengerClass(List<Tiatainc> passengerList) {
+public void graphPassengerClass(List<Dataset> passengerList) {
 	Map<String, Long> result =
 			passengerList.stream ().collect (
-			Collectors.groupingBy (Tiatainc::getPclass, Collectors.counting () ) );
+			Collectors.groupingBy (Dataset::getPclass, Collectors.counting () ) );
 
 	
 // Create Chart
@@ -61,11 +61,11 @@ new SwingWrapper (chart).displayChart ();
 }
 
 
-public void graphsurvived(List<Tiatainc> passengerList) {
+public void graphsurvived(List<Dataset> passengerList) {
 	
 	Map<String, Long> result =
 			passengerList.stream ().collect (
-			Collectors.groupingBy (Tiatainc::getSurvived, Collectors.counting () ) );
+			Collectors.groupingBy (Dataset::getSurvived, Collectors.counting () ) );
 	
 	PieChart chart = new PieChartBuilder ().width (800).height (600).title (getClass ().getSimpleName ()).build ();
 	// Customize Chart
@@ -79,7 +79,7 @@ public void graphsurvived(List<Tiatainc> passengerList) {
 	new SwingWrapper (chart).displayChart ();
 }
 
-public void graphgender(List<Tiatainc> passengerList) {
+public void graphgender(List<Dataset> passengerList) {
 	
 	Map<String, Long> result =
 			passengerList.stream ().filter(p->p.getSurvived().equals("1")).collect (
